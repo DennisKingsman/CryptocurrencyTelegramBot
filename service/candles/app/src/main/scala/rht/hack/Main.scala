@@ -1,5 +1,7 @@
 package rht.hack
 
+import rht.hack.stream.MainStream
+
 /**
   * Program entry point
   *
@@ -16,7 +18,7 @@ object Main extends HackathonApp {
     */
   override def start(args: List[String]): SourceActor = {
     // TODO: Implement this method to start your app
-    null
+    MainStream.getSourceActorStream
   }
 
 }
