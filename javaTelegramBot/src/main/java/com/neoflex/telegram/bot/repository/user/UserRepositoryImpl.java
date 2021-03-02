@@ -27,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Map<String, User> findAll() {
         Map<String, User> users = hashOperations.entries(USER_KEY);
-        log.info("Did it find users : {}", Objects.isNull(users));
+        log.info("Did it find users : {}", !Objects.isNull(users));
         return users;
     }
 
