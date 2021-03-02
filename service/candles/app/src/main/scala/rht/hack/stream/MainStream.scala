@@ -15,18 +15,16 @@ object MainStream {
 
   def getSourceActorStream: SourceActor = {
     implicit val actorSystem: ActorSystem = ActorSystem()
-    //implicit val materializer: Materializer = Materializer()
 
     val source: Source[Any, ActorRef] = Source.actorRef(
       completionMatcher = {
         case Done =>
           println("Done was passed. Terminating the system.")
           actorSystem.terminate()
-          // complete stream immediately if we send it Done
           CompletionStrategy.immediately
 
       },
-      // never fail the stream because of a message
+
       failureMatcher = PartialFunction.empty,
       bufferSize = 2000,
       overflowStrategy = OverflowStrategy.dropHead)
@@ -36,21 +34,21 @@ object MainStream {
     streamActor
   }
 
+
+	// TODO: This whole method should be replaced with a test.
   def main(args: Array[String]): Unit = {
 
     implicit val actorSystem: ActorSystem = ActorSystem()
-    //implicit val materializer: Materializer = Materializer()
 
     val source: Source[Any, ActorRef] = Source.actorRef(
       completionMatcher = {
         case Done =>
           println("Done was passed. Terminating the system.")
           actorSystem.terminate()
-          // complete stream immediately if we send it Done
           CompletionStrategy.immediately
 
       },
-      // never fail the stream because of a message
+
       failureMatcher = PartialFunction.empty,
       bufferSize = 2000,
       overflowStrategy = OverflowStrategy.dropHead)
