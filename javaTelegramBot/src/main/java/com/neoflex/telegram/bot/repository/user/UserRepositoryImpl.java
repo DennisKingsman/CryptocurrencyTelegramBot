@@ -5,10 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -29,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Map<String, User> findAll() {
         Map<String, User> users = hashOperations.entries(USER_KEY);
-        log.info("Did it find users : {}", Objects.isNull(users));
+        log.info("Did it find users : {}", !Objects.isNull(users));
         return users;
     }
 
