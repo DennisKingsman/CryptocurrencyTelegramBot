@@ -7,13 +7,15 @@ import akka.stream.scaladsl._
 import rht.common.domain.candles.{Candle, CandleDetails}
 import rht.common.domain.candles.Figis
 import rht.hack.Main.SourceActor
+import rht.hack.dao.RedisCandleDao
 
 import java.time.Instant
+import scala.concurrent.Future
 import scala.concurrent.duration.{Duration, FiniteDuration, SECONDS}
 
 object MainStream {
 
-  def getSourceActorStream: SourceActor = {
+  def getSourceActorStream(sinkType: Sink[Any, Future[Done]]): SourceActor = {
     implicit val actorSystem: ActorSystem = ActorSystem()
 
     val source: Source[Any, ActorRef] = Source.actorRef(
@@ -29,7 +31,10 @@ object MainStream {
       bufferSize = 2000,
       overflowStrategy = OverflowStrategy.dropHead)
 
-    val streamActor: ActorRef = source.to(Sink.foreach(println)).run()
+    //val sink = Sink.fold()
+    val sink = Sink.foreach(println)
+
+    val streamActor: ActorRef = source.to(sinkType).run()
 
     streamActor
   }
