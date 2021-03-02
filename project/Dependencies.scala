@@ -70,7 +70,26 @@ object Dependencies {
     "com.typesafe.akka" %% "akka-stream" % versions.akka
   )
 
+  lazy val scalatest = Seq(
+    "org.scalatest" %% "scalatest" % versions.scalatest % Test
+  )
+
+  lazy val `akka-testkit` = Seq(
+    "com.typesafe.akka" %% "akka-testkit" % versions.akka % Test
+  )
+
+  lazy val debasishg = Seq(
+    "net.debasishg" %% "redisclient" % versions.debasishg
+  )
+
   lazy val all = Seq(
+    // testing toolkits
+    scalatest,
+    `akka-testkit`,
+
+    // redis library
+    debasishg,
+
     // effects
     monix,
     // kafka
@@ -100,6 +119,8 @@ object Dependencies {
     val enumeratum = "1.6.0"
     val newtype = "0.4.4"
     val akka = "2.6.12"
+    val scalatest = "3.2.2"
+    val debasishg = "3.30"
   }
 
 }
