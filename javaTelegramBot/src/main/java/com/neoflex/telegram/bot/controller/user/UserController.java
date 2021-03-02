@@ -17,6 +17,11 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping("/all")
+    public Map<String, User> all() {
+        return userRepository.findAll();
+    }
+
     @GetMapping("/add/{id}/{name}")
     public User add(@PathVariable("id") final String id,
                     @PathVariable("name") final String name) {
@@ -35,11 +40,6 @@ public class UserController {
     public Map<String, User> delete(@PathVariable("id") final String id) {
         userRepository.delete(id);
         return all();
-    }
-
-    @GetMapping("/all")
-    public Map<String, User> all() {
-        return userRepository.findAll();
     }
 
 }

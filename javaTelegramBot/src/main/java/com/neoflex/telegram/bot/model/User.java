@@ -5,12 +5,11 @@ import java.util.Objects;
 
 public class User implements Serializable {
 
+    private static final long serialVersionUID = 1113799434508676095L;
+
     private String userId;
     private String userName;
     private String userMessage;
-
-    public User() {
-    }
 
     public User(String userId, String userName, String userMessage) {
         this.userId = userId;
