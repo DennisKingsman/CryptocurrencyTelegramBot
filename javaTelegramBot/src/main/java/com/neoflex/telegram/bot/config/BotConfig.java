@@ -20,7 +20,7 @@ public class BotConfig {
     private String botToken;
 
     @Bean
-    public BrokerTelegramBot MySuperTelegramBot() {
+    public BrokerTelegramBot brokerTelegramBot() {
         DefaultBotOptions options = ApiContext
                 .getInstance(DefaultBotOptions.class);
 
@@ -31,6 +31,8 @@ public class BotConfig {
         log.info("User name : {}, user token : {}, path : {}", botUserName, botToken, webHookPath);
         return mySuperTelegramBot;
     }
+
+    
 
     public static Logger getLog() {
         return log;
