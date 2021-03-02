@@ -5,11 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.Jedis;
 
 @Configuration
-public class JedisConfig {
+public class RedisConfig {
 
-//    @Bean
-//    Jedis jedis() {
-//        return new Jedis();
-//    }
+    @Bean
+    Jedis jedis() {
+        return new Jedis();
+    }
 
 }

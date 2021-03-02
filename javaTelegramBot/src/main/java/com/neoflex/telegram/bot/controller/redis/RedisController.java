@@ -15,9 +15,11 @@ import java.util.Map;
 @RequestMapping("/rest/redis")
 public class RedisController {
 
+    @Autowired
+    private Jedis jedis;
+
     @GetMapping("/post/{key}")
     public List<String> post(@PathVariable("key") final String key) {
-        Jedis jedis = new Jedis();
         String[] fields = {"open", "close", "low", "high", "openTime"};
         String[] vals = {"1", "2", "3", "4", "5"};
         Map<String, String> post = new HashMap<>();
