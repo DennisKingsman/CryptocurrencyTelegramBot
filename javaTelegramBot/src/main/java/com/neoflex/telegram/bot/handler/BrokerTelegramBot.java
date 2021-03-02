@@ -2,7 +2,6 @@ package com.neoflex.telegram.bot.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
@@ -32,6 +31,10 @@ public class BrokerTelegramBot extends TelegramWebhookBot {
         return botToken;
     }
 
+    public void setBotToken(String botToken) {
+        this.botToken = botToken;
+    }
+
     //changed long to String!
     @Override
     public BotApiMethod onWebhookUpdateReceived(Update update) {
@@ -59,10 +62,6 @@ public class BrokerTelegramBot extends TelegramWebhookBot {
 
     public void setBotUserName(String botUserName) {
         this.botUserName = botUserName;
-    }
-
-    public void setBotToken(String botToken) {
-        this.botToken = botToken;
     }
 
 }
