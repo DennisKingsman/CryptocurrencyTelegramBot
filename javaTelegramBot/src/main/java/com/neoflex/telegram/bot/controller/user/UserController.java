@@ -2,6 +2,7 @@ package com.neoflex.telegram.bot.controller.user;
 
 import com.neoflex.telegram.bot.model.User;
 import com.neoflex.telegram.bot.repository.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,8 @@ import java.util.Map;
 @RequestMapping("/rest/user")
 public class UserController {
 
+    @Autowired
     private UserRepository userRepository;
-
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @GetMapping("/add/{id}/{name}")
     public User add(@PathVariable("id") final String id,
