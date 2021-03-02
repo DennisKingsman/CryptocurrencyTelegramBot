@@ -6,12 +6,18 @@ public interface Repository<T> {
 
     void save(T entity);
 
-    Map<String, T> findAll();
+    default Map<String, T> findAll() {
+        return null;
+    }
 
     void update(T entity);
 
-    void delete(String id);
+    default void delete(String id) {
 
-    T findById(String id);
+    }
+
+    default T findById(String id) {
+        return null;
+    }
 
 }

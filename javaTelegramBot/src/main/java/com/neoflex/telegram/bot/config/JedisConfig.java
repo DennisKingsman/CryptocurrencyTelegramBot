@@ -1,6 +1,7 @@
 package com.neoflex.telegram.bot.config;
 
 import com.neoflex.telegram.bot.handler.MessageSubscriber;
+import com.neoflex.telegram.bot.model.Message;
 import com.neoflex.telegram.bot.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +23,13 @@ public class JedisConfig {
         RedisTemplate<String, User> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(jedisConnectionFactory());
         return redisTemplate;
+    }
+
+    @Bean
+    RedisTemplate<Long, String> messageRedisTemplate() {
+        RedisTemplate<Long, String> messageRedisTemplate = new RedisTemplate<>();
+        messageRedisTemplate.setConnectionFactory(jedisConnectionFactory());
+        return messageRedisTemplate;
     }
 
     @Bean
