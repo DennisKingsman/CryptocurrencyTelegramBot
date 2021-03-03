@@ -4,8 +4,10 @@ import com.neoflex.telegram.bot.handler.BrokerTelegramBot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.ApiContext;
 
@@ -18,6 +20,10 @@ public class BotConfig {
     private String webHookPath;
     private String botUserName;
     private String botToken;
+
+    public static Logger getLog() {
+        return log;
+    }
 
     @Bean
     public BrokerTelegramBot brokerTelegramBot() {
@@ -32,10 +38,14 @@ public class BotConfig {
         return mySuperTelegramBot;
     }
 
-    
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource
+                = new ReloadableResourceBundleMessageSource();
 
-    public static Logger getLog() {
-        return log;
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 
     public String getWebHookPath() {
