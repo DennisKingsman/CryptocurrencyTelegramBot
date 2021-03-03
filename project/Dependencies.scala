@@ -82,6 +82,14 @@ object Dependencies {
     "net.debasishg" %% "redisclient" % versions.debasishg
   )
 
+  lazy val `akka-http` = Seq(
+    "com.typesafe.akka" %% "akka-http" % versions.AkkaHttpVersion
+  )
+
+  lazy val bot4s = Seq(
+    "com.bot4s" %% "telegram-akka" % "4.4.0-RC2"
+  )
+
   lazy val all = Seq(
     // testing toolkits
     scalatest,
@@ -89,6 +97,8 @@ object Dependencies {
 
     // redis library
     debasishg,
+
+    `akka-http`,
 
     // effects
     monix,
@@ -121,6 +131,7 @@ object Dependencies {
     val akka = "2.6.12"
     val scalatest = "3.2.2"
     val debasishg = "3.30"
+    val AkkaHttpVersion = "10.2.4"
   }
 
 }

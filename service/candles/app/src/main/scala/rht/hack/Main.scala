@@ -18,7 +18,7 @@ object Main extends HackathonApp {
     */
   override def start(args: List[String]): SourceActor = {
     // TODO: Implement this method to start your app
-    MainStream.getSourceActorStream(sinkType = SinkType.CONSOLE)
+    MainStream.getSourceActorStream(sinkType = SinkType.REDIS)
   }
 
 }
