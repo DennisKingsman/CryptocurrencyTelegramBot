@@ -7,8 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.List;
 
 public class BrokerTelegramBot extends TelegramWebhookBot {
 
@@ -45,6 +50,11 @@ public class BrokerTelegramBot extends TelegramWebhookBot {
         log.info("User message is : {}", update.getMessage().getText());
         SendMessage replyMessageToUser = telegramFacade.handleUpdate(update);
         return replyMessageToUser;
+    }
+
+    @Override
+    public List<Message> execute(SendMediaGroup sendMediaGroup) throws TelegramApiException {
+        return super.execute(sendMediaGroup);
     }
 
     @Override

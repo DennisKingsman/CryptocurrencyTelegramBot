@@ -9,7 +9,7 @@ public class RedisConfig {
 
     @Bean
     Jedis jedis() {
-        return new Jedis();
+        return new Jedis("94.180.35.212", 6379);
     }
 
 }
