@@ -37,6 +37,7 @@ public class ScheduleFigi {
     //todo url to bot
     @Scheduled(fixedRate = 5000)
     public void scheduledRedis() throws IOException, URISyntaxException {
+        //NPE in cache
         Map<Integer, BotState> botState = userDataCache.getUsersBotStates();
         Map<Integer, ChatResponce> usersFigiData = userDataCache.getUsersFigiData();
         for (Map.Entry<Integer, BotState> e : botState.entrySet()) {
